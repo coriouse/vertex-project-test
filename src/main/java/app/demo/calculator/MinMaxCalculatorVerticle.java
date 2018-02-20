@@ -30,7 +30,7 @@ public class MinMaxCalculatorVerticle extends AbstractVerticle {
     public void start() throws Exception {
         String address = from + "-" + to;
         EventBus eb = vertx.eventBus();
-
+        //TODO drop calculated data to storage
         eb.consumer(address, message -> {
 
             Float curr = Float.valueOf(message.body().toString());

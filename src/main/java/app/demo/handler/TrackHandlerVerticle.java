@@ -28,6 +28,8 @@ public class TrackHandlerVerticle extends AbstractVerticle {
 
 
     public String track(String from, String to) {
+        //TODO read data from storage or cache
+        //TODO this code is wrong
         Gson gson = new Gson();
         String adderess = from + "-" + to + "-STATUS";
         final String[] minMax = {null};
