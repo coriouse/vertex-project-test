@@ -1,32 +1,44 @@
 package app.demo.calculator;
 
+import app.demo.holder.MinMax;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.EventBus;
 
 public class MinMaxCalculatorVerticle extends AbstractVerticle {
 
 
+    private String from;
+    private String to;
 
+    private MinMax  minMax;
 
-    private String name = null;
+    public MinMaxCalculatorVerticle(String from, String to) {
+        this.from = from;
+        this.to = to;
+        this.minMax = new MinMax();
 
-    public MinMaxCalculatorVerticle(String name) {
-        this.name = name;
     }
+
 
     @Override
     public void start() throws Exception {
-
+        String address = from+"-"+to;
         EventBus eb = vertx.eventBus();
 
-        eb.consumer("ping-address", message -> {
+        eb.consumer(address, message -> {
 
-            System.out.println("Received message: " + message.body());
-            // Now send back reply
-            message.reply("pong!" +name);
+            Float curr = Float.valueOf(message.body().toString());
+
+            if(curr > minMax.getMax()) {
+                minMax.setMin(minMax.getMax());
+                minMax.setMax(curr);
+            }
+
+            System.out.println("Calculated for ["+address+"]: " + minMax.toString());
+
         });
 
-        System.out.println("Receiver ready!");
+        System.out.println("Calculator for ["+address+"] is ready!");
     }
 
 

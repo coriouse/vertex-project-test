@@ -1,5 +1,6 @@
 package app.demo.reader;
 
+import app.demo.calculator.MinMaxCalculatorVerticle;
 import app.demo.holder.Pair;
 import com.google.gson.Gson;
 import io.vertx.core.AbstractVerticle;
@@ -22,6 +23,8 @@ public class PriceDispatcher extends AbstractVerticle {
             Pair pair = getPair(message.body().toString());
             System.out.println("Pair ["+pair.getFrom()+","+pair.getTo()+"] is registered");
             vertx.deployVerticle(new PriceReaderVerticle(pair.getFrom(), pair.getTo(), interval));
+            vertx.deployVerticle(new MinMaxCalculatorVerticle(pair.getFrom(), pair.getTo()));
+
 
         });
 

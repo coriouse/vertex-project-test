@@ -2,6 +2,7 @@ package app.demo.controller;
 
 
 import app.demo.holder.HolderService;
+import app.demo.holder.MinMax;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +17,9 @@ public class CurrencyTrackController {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(method = RequestMethod.GET)
-    Object track() {
+    MinMax track() {
 
-        return null;
+        return new MinMax();
     }
 
     @RequestMapping(method = RequestMethod.POST)

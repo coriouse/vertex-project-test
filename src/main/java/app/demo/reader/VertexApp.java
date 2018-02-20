@@ -18,8 +18,6 @@ public class VertexApp {
     public void init() {
         Vertx vertx = Vertx.vertx();
 
-        vertx.deployVerticle(new MinMaxCalculatorVerticle("R1"));
-
         vertx.deployVerticle(new PriceDispatcher());
 
         try {
@@ -37,7 +35,6 @@ public class VertexApp {
     public static void main(String[] args) throws InterruptedException {
         Vertx vertx = Vertx.vertx();
 
-        vertx.deployVerticle(new MinMaxCalculatorVerticle("R1"));
 
         vertx.deployVerticle(new PriceDispatcher());
 

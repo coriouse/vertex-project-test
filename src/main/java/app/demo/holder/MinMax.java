@@ -3,22 +3,30 @@ package app.demo.holder;
 
 public class MinMax {
 
-    private String min;
-    private String max;
+    private Float  min = 0f;
+    private Float  max = 0f;
 
-    public String getMin() {
+    public Float getMin() {
         return min;
     }
 
-    public void setMin(String min) {
+    public void setMin(Float min) {
         this.min = min;
     }
 
-    public String getMax() {
+    public Float getMax() {
         return max;
     }
 
-    public void setMax(String max) {
+    public void setMax(Float max) {
         this.max = max;
+    }
+
+    @Override
+    public String toString() {
+        return "MinMax{" +
+                "min=" + min +
+                ", max=" + max +
+                '}';
     }
 }
