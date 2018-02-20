@@ -1,13 +1,16 @@
-package app.test.calculator;
+package app.demo.calculator;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.EventBus;
 
-public class EventBusReceiverVerticle extends AbstractVerticle {
+public class MinMaxCalculatorVerticle extends AbstractVerticle {
+
+
+
 
     private String name = null;
 
-    public EventBusReceiverVerticle(String name) {
+    public MinMaxCalculatorVerticle(String name) {
         this.name = name;
     }
 
@@ -25,5 +28,7 @@ public class EventBusReceiverVerticle extends AbstractVerticle {
 
         System.out.println("Receiver ready!");
     }
+
+
 
 }
