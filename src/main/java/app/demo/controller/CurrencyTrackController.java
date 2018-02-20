@@ -1,31 +1,30 @@
 package app.demo.controller;
 
-
-import app.demo.holder.HolderService;
-import app.demo.holder.MinMax;
+import app.demo.handler.TrackHandlerVerticle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * REST
+ */
 @RestController
 @RequestMapping(value = "/cryptos")
 public class CurrencyTrackController {
 
     @Autowired
-    HolderService holderService;
+    TrackHandlerVerticle trackHandlerVerticle;
 
 
-    @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(method = RequestMethod.GET)
-    MinMax track() {
-
-        return new MinMax();
+    @RequestMapping(method = RequestMethod.GET, value = "/{from}/{to}")
+    public String track(@PathVariable String from, @PathVariable String to) {
+        return trackHandlerVerticle.track(from,to);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void add(@RequestBody String pair) {
-        holderService.add(pair);
+        trackHandlerVerticle.add(pair);
     }
 
 

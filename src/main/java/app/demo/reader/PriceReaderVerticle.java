@@ -8,8 +8,6 @@ import java.util.Map;
 
 /**
  * Price reader
- *
- *
  */
 public class PriceReaderVerticle extends AbstractVerticle {
 
@@ -29,19 +27,12 @@ public class PriceReaderVerticle extends AbstractVerticle {
         this.interval = interval;
     }
 
-
     @Override
     public void start() throws Exception {
-        String address = from+"-"+to;
+        String address = from + "-" + to;
         EventBus eb = vertx.eventBus();
         vertx.setPeriodic(interval, v -> {
-            eb.send(address, readPrice(), reply -> {
-                if (reply.succeeded()) {
-                    System.out.println("Received reply " + reply.result().body());
-                } else {
-                    System.out.println("No reply");
-                }
-            });
+            eb.send(address, readPrice());
         });
     }
 
@@ -49,9 +40,5 @@ public class PriceReaderVerticle extends AbstractVerticle {
         String URL = String.format(URI, from, to);
         Map<String, Float> price = restTemplate.getForObject(URL, Map.class);
         return String.valueOf(price.get(to));
-
-
     }
-
-
 }

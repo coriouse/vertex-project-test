@@ -1,6 +1,9 @@
-package app.demo.holder;
+package app.demo.handler;
 
-
+/**
+ * Min Max result
+ *
+ */
 public class MinMax {
 
     private Float  min = 0f;

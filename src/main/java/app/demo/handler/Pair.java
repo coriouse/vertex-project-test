@@ -1,9 +1,12 @@
-package app.demo.holder;
+package app.demo.handler;
 
+/**
+ * Pair of currency
+ */
 public class Pair {
 
-private String from;
-private String to;
+    private String from;
+    private String to;
 
     public Pair(String from, String to) {
         this.from = from;
